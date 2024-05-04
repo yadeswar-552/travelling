@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Login</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="mb-4">Phone Number Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
+                            placeholder="Enter your phone number" required>
+                        <small id="phoneHelp" class="form-text text-muted">We'll send you an OTP for
+                            verification.</small>
+                    </div>
+                    <div class="form-group" id="otpSection" style="display: none;">
+                        <label for="otp">Enter OTP</label>
+                        <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter OTP" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initialize Firebase
+            var firebaseConfig = {
+                apiKey: "YOUR_API_KEY",
+                authDomain: "YOUR_AUTH_DOMAIN",
+                projectId: "YOUR_PROJECT_ID",
+                storageBucket: "YOUR_STORAGE_BUCKET",
+                messagingSenderId: "YOUR_SENDER_ID",
+                appId: "YOUR_APP_ID"
+            };
+            firebase.initializeApp(firebaseConfig);
+
+            // Initialize Twilio
+            const twilioConfig = {
+                twilioPhoneNumber: 'YOUR_TWILIO_PHONE_NUMBER',
+                twilioAccountSid: 'YOUR_TWILIO_ACCOUNT_SID',
+                twilioAuthToken: 'YOUR_TWILIO_AUTH_TOKEN'
+            };
+
+            // Initialize Firestore
+            var db = firebase.firestore();
+
+            // Form validation rules
+            $('#loginForm').validate({
+                rules: {
+                    phoneNumber: {
+                        required: true,
+                        phoneUS: true // Assuming you're using US phone numbers
+                    },
+                    otp: {
+                        required: true,
+                        digits: true,
+                        minlength: 6,
+                        maxlength: 6
+                    }
+                },
+                messages: {
+                    phoneNumber: {
+                        required: "Please enter your phone number.",
+                        phoneUS: "Please enter a valid US phone number."
+                    },
+                    otp: {
+                        required: "Please enter the OTP sent to your phone.",
+                        digits: "Please enter only digits.",
+                        minlength: "OTP must be exactly 6 digits.",
+                        maxlength: "OTP must be exactly 6 digits."
+                    }
+                },
+                submitHandler: function (form) {
+                    var phoneNumber = $('#phoneNumber').val();
+                    var otp = $('#otp').val();
+
+                    // Here you can add code to verify the OTP and log in the user
+                    // For now, let's just log the phone number and OTP to console
+                    console.log('Phone Number:', phoneNumber);
+                    console.log('OTP:', otp);
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

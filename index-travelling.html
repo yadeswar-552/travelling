@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Add your custom styles here */
+        .main-container {
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .card {
+            margin-top: 20px;
+        }
+
+        .card-title {
+            color: #333;
+        }
+
+        .card-text {
+            color: #666;
+        }
+
+        /* Overlay styles */
+        .position-relative {
+            position: relative;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Adjust opacity as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-text {
+            color: white;
+            font-size: 24px;
+        }
+
+        .image-overlay h5 {
+            margin: 0;
+        }
+
+        .image-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .card:hover .image-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+    <div class="text-center">
+        <h1>Welcome to travelling Page </h1>
+    </div>
+
+
+
+
+
+
+    <!-- End of Navbar -->
+
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mt-5">
+        <a class="navbar-brand mx-auto" href="index.html">
+            <img src="images/nav-logo1.png" alt="" width="40" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto"> <!-- Applied justify-content-center to this ul -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="index-to-do-list.html" target="_blank">Things To-Do</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index-travel-activities.html" target="_blank">Travel Articles</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSubMenu" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownSubMenu">
+                        <a class="dropdown-item" href="" target="_blank">Add a Place</a>
+                        <a class="dropdown-item" href="index-travel-form.html" target="_blank">Travel Form</a>
+                        <a class="dropdown-item" href="index-help-center.html" target="_blank">Help Center</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- image card start -->
+    <div class="container-fluid main-container m-5">
+        <div class="row align-items-center justify-content-center h-100">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="position-relative">
+                        <img src="kyoto-japan.jpg" class="card-img-top" alt="...">
+                        <div class="image-overlay">
+                            <h5 class="image-text">Find Things To Do Anywhere</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Find Things To Do Anywhere</h5>
+                        <p class="card-text">Plan, book, go—we make it easy</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <button class="btn btn-primary" type="button">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- end -->
+    <!-- start footer -->
+
+
+
+    <footer class="footer bg-dark text-white mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>About Travel App</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Resources and Policies</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Trust and Safety</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Accessibility Statement</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Explore</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Help Centre</a></li>
+                        <li><a href="#">Travel Activities</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Do Business with Us</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Owners</a></li>
+                        <li><a href="#">Business Advantage</a></li>
+                        <li><a href="#">Sponsored Placements</a></li>
+                        <li><a href="#">Access Our Content API</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Follow Us</h4>
+                    <ul class="list-inline social-links">
+                        <li class="list-inline-item">
+                            <a href="#" class="social-link" data-toggle="tooltip" title="Visit our Facebook page">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="social-link" data-toggle="tooltip" title="Follow us on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="social-link" data-toggle="tooltip" title="Explore our Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy and Cookies Statement</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-right">
+                    <ul class="list-unstyled">
+                        <li><a href="#">How the Site Works</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+        </div>
+    </footer>
+
+    <!-- end footer -->
+
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.getElementById("searchInput");
+            const searchBtn = document.getElementById("searchBtn");
+
+            searchBtn.addEventListener("click", function () {
+                const searchTerm = searchInput.value;
+                // Perform search operation here
+                console.log("Searching for: ", searchTerm);
+            });
+        });
+
+
+    </script>
+
+    <!-- Bootstrap CSS & JS Links (Assuming Bootstrap 4) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+
+</body>
+
+</html>

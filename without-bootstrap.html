@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333333;
+            transition: color 0.3s ease;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #4caf50;
+        }
+
+        /* Welcome Section Styles */
+        .welcome {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .welcome h2 {
+            margin-top: 0;
+        }
+
+        /* Carousel Styles */
+        .carousel {
+            margin-bottom: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 100%;
+            margin-right: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 16px;
+        }
+
+
+
+
+
+
+
+
+        /* Basic styles for the carousel */
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .card {
+            flex: 0 0 100%;
+            /* Each card takes up 100% of the carousel width */
+            margin-right: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Animation */
+        @keyframes slide {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Basic responsive styles */
+        @media screen and (max-width: 768px) {
+            .card {
+                flex: 0 0 calc(100% - 20px);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* CSS styles */
+        .carousel {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: auto;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 2;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+
+
+
+
+
+
+
+
+
+        /* Footer Styles */
+        footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        footer ul li {
+            margin: 10px;
+        }
+
+        footer ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #4caf50;
+        }
+
+        /* Animation for Welcome Section */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome {
+            animation: fadeInDown 1s ease-out;
+        }
+
+        /* Animation for Card Hover */
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Animation for Card Title Hover */
+        .card-title {
+            transition: color 0.3s ease;
+        }
+
+        .card-title:hover {
+            color: #4caf50;
+        }
+
+        /* Animation for Navbar Link Hover */
+        nav ul li a {
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4caf50;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        Travel App
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Discover</a></li>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">Trips</a></li>
+            <li><a href="#">Sign In</a></li>
+        </ul>
+    </nav>
+
+    <div class="welcome">
+        <h2>Welcome to Travel App!</h2>
+        <p>Here you can discover amazing destinations, plan your trips, and find exciting offers.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <!-- Responsive Carousel -->
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="park.jpg" alt="Destination 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/Pet-Friendly hotels.jpg" alt="Destination 2">
+                </div>
+                <!-- Add more carousel items here -->
+            </div>
+            <a class="carousel-control-prev" href="#" role="button" data-slide="prev">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#" role="button" data-slide="next">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+
+        <!-- Featured Destinations Cards -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="beach.jpg" alt="Destination 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Santorini, Greece</h5>
+                        <p class="card-text">Santorini is a volcanic island in the Cyclades group of the Greek
+                            islands. It is famous for its dramatic views, stunning sunsets, and whitewashed buildings
+                            perched on cliffs above the Aegean Sea.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="mountain.jpg" alt="Destination 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Swiss Alps, Switzerland</h5>
+                        <p class="card-text">The Swiss Alps offer some of the most spectacular mountain scenery in
+                            the world. Visitors can enjoy skiing, snowboarding, hiking, and breathtaking views of
+                            snow-capped peaks and crystal-clear lakes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="city.jpg" alt="Destination 5">
+                    <div class="card-body">
+                        <h5 class="card-title">New York City, USA</h5>
+                        <p class="card-text">New York City, often referred to simply as NYC, is the most populous
+                            city in the United States. It is famous for its iconic landmarks, world-class museums,
+                            diverse culture, and vibrant nightlife.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="card">
+                <img src="images/All-Inclusive-Hotels.jpg" alt="Image 1">
+            </div>
+            <div class="card">
+                <img src="images/Family-Friendly Hetels.jpg" alt="Image 2">
+            </div>
+            <div class="card">
+                <img src="images/Pet-Friendly hotels.jpg" alt="Image 3">
+            </div>
+            <!-- Add more card elements with images as needed -->
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="container">
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Resources and Policies</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Trust and Safety</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Accessibility Statement</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">Help Centre</a></li>
+                <li><a href="#">Travel Activities</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">Owners</a></li>
+                <li><a href="#">Business Advantage</a></li>
+                <li><a href="#">Sponsored Placements</a></li>
+                <li><a href="#">Access Our Content API</a></li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Privacy and Cookies Statement</a></li>
+                <li><a href="#">Sitemap</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">How the Site Works</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+            <div class="authentication">
+                <a href="#">Sign In</a>
+                <a href="#">Sign Up</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // JavaScript for carousel functionality
+        const carousel = document.querySelector('.carousel');
+        const cards = document.querySelectorAll('.card');
+
+        let currentIndex = 0;
+        const totalCards = cards.length;
+
+        function showNextSlide() {
+            if (currentIndex < totalCards - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const offset = -100 * currentIndex;
+            carousel.style.transform = `translateX(${offset}%)`;
+        }
+
+        setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+    </script>
+
+
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+
+</html>

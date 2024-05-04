@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Check if alert has been shown before
+        $(document).ready(function () {
+            if (!localStorage.getItem('alertShown')) {
+                showAlert();
+                localStorage.setItem('alertShown', true);
+            }
+        });
+
+        function showAlert() {
+            var alertContent = `
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <h4 class="alert-heading">Welcome to Our Website!</h4>
+      <p>Discover amazing products and services. Please create an account to get started.</p>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="your-image.jpg" class="card-img-top" alt="Image">
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h3>Create an Account</h3>
+              <form id="createAccountForm">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" class="form-control" id="firstName" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>`;
+
+            $('body').append(alertContent);
+
+            // JavaScript for form submission
+            $('#createAccountForm').submit(function (event) {
+                event.preventDefault();
+                // Here you can add code to handle form submission, like sending data to server
+                alert('Account created successfully!');
+                // You can also redirect user to another page after successful submission
+                // window.location.href = 'success.html';
+            });
+        }
+    </script>
+
+</body>
+
+</html>

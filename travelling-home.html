@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Add custom styles here if needed */
+        body {
+            background-color: #f4f4f4;
+            /* Light gray background */
+            font-family: Arial, sans-serif;
+            /* Set default font */
+        }
+
+        .search-bar {
+            width: 70%;
+            /* Adjust the width as needed */
+        }
+
+        .welcome-alert {
+            background-color: #4caf50;
+            /* Green background color */
+            color: #ffffff;
+            /* White text color */
+            height: 200px;
+            /* Adjusted height */
+            width: 70%;
+            /* Adjusted width */
+            position: relative;
+            z-index: 1050;
+            /* Higher z-index to appear above the navbar */
+            margin: 0 auto;
+            /* Center the alert horizontally */
+        }
+
+        .sticky-top {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            /* Ensure the navbar appears above other content */
+        }
+
+
+        .destination-card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Soft shadow */
+            transition: box-shadow 0.3s ease;
+            /* Smooth transition */
+        }
+
+        .destination-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            /* Slightly stronger shadow on hover */
+        }
+
+        /* Custom styles for carousel */
+        .carousel-item img {
+            max-height: 400px;
+            /* Adjust the maximum height of the carousel images */
+            object-fit: cover;
+            /* Ensure images cover the carousel container */
+        }
+
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black background */
+            color: #ffffff;
+            /* White text color */
+            padding: 20px;
+            /* Padding for the caption */
+        }
+
+        /* Custom styles for carousel navigation icons */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black background */
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Darker background on hover */
+        }
+
+        /* Animation for carousel */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .carousel-item {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Form validation styles */
+        .form-control.is-valid,
+        .was-validated .form-control:valid {
+            border-color: #4caf50;
+            /* Green border color for valid input */
+        }
+
+        .form-control.is-invalid,
+        .was-validated .form-control:invalid {
+            border-color: #f44336;
+            /* Red border color for invalid input */
+        }
+
+        .invalid-feedback {
+            color: #f44336;
+            /* Red text color for validation error message */
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #ffffff;
+            /* White background color */
+            border-bottom: 1px solid #e0e0e0;
+            /* Light gray border bottom */
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #333333;
+            /* Dark gray text color */
+            transition: color 0.3s ease;
+            /* Smooth transition */
+        }
+
+        .navbar-brand:hover,
+        .nav-link:hover {
+            color: #4caf50;
+            /* Green text color on hover */
+        }
+
+        .navbar-toggler-icon {
+            border-color: #333333;
+            /* Dark gray border color */
+        }
+
+        .navbar-toggler {
+            border-color: #333333;
+            /* Dark gray border color */
+        }
+
+
+
+
+
+
+
+
+
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 40px 0;
+        }
+
+        .footer h4 {
+            color: #4caf50;
+        }
+
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #4caf50;
+        }
+
+        .social-link {
+            font-size: 24px;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #4caf50;
+        }
+
+        /* Tooltip */
+        .tooltip-inner {
+            background-color: #4caf50;
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+
+        /* Tooltip Arrow */
+        .tooltip.bs-tooltip-bottom .arrow::before {
+            border-bottom-color: #4caf50;
+        }
+
+        .tooltip.bs-tooltip-bottom .arrow::after {
+            border-bottom-color: #4caf50;
+        }
+
+        /* Footer Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .footer {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+
+
+
+
+
+
+
+        /* Button styles */
+        .btn-primary {
+            background-color: #4caf50;
+            /* Green background color for primary buttons */
+            border-color: #4caf50;
+            /* Green border color */
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            /* Smooth transition */
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+            /* Darker green background color on hover */
+            border-color: #45a049;
+            /* Darker green border color on hover */
+        }
+
+        /* Modal styles */
+        .modal-content {
+            background-color: #ffffff;
+            /* White background color for modal content */
+            border-radius: 5px;
+            /* Rounded corners */
+        }
+
+        .modal-header {
+            border-bottom: none;
+            /* No border at the bottom of the modal header */
+        }
+
+        .modal-title {
+            color: #333333;
+            /* Dark gray text color for modal title */
+        }
+
+        .close {
+            color: #333333;
+            /* Dark gray text color for close button */
+        }
+
+        .close:hover {
+            color: #4caf50;
+            /* Green text color on close button hover */
+        }
+
+
+
+        /* 2 animation start*/
+
+
+
+
+
+
+
+        .card-img-top {
+            transition: transform 0.3s ease;
+        }
+
+        .card-img-top:hover {
+            transform: scale(1.05);
+        }
+
+        /* Text Animation */
+        .card-title {
+            transition: color 0.3s ease;
+        }
+
+        .card-title:hover {
+            color: #4caf50;
+        }
+
+        /* Button Animation */
+        .btn-primary {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+        }
+
+        /* Navbar Animation */
+        .navbar-brand,
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover,
+        .nav-link:hover {
+            color: #4caf50;
+        }
+
+        /* Anchor Button Animation */
+        .social-link {
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #4caf50;
+        }
+
+        /* Link Animation */
+        .footer a {
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #4caf50;
+        }
+
+
+
+        /* Alert Animation */
+        .welcome-alert {
+            animation: fadeInDown 1s ease-out;
+            text-align: center;
+
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* First letter animation for alert */
+        .welcome-alert::first-letter {
+            font-size: 50px;
+        }
+
+        /* Firework animation for alert */
+        .welcome-alert {
+            position: relative;
+        }
+
+        .welcome-alert::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #390cea 20%, transparent 20%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            animation: fireworks 2s ease-out infinite;
+            opacity: 0;
+        }
+
+
+
+        /* Map container styling */
+        #map-container {
+            height: 400px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Google Map iframe styling */
+        #google-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Contact information styling */
+        .contact-info {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        @keyframes fireworks {
+            0% {
+                opacity: 1;
+                transform: scale(10);
+            }
+
+            50% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+
+
+        @media screen and (max-width: 788px) {
+
+            /* Adjust the height of the carousel images */
+            .carousel-item img {
+                max-height: 200px;
+            }
+
+            /* Adjust the font size and padding of the carousel captions */
+            .carousel-caption {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            /* Adjust the font size of the card titles */
+            .card-title {
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (max-width: 100px) {
+
+            /* Adjust the height of the carousel images */
+            .carousel-item img {
+                max-height: 100px;
+            }
+
+            /* Adjust the font size and padding of the carousel captions */
+            .carousel-caption {
+                font-size: 12px;
+                padding: 5px;
+            }
+
+            /* Adjust the font size of the card titles */
+            .card-title {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Welcome Alert -->
+    <div class="alert alert-success alert-dismissible fade show welcome-alert " role="alert">
+        <strong>Welcome to Travel App!</strong> Here you can discover amazing destinations, plan your trips, and find
+        exciting offers.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-5 text-center">
+        <h1>Welcome to Travel App</h1>
+        <!-- Add more content here -->
+    </div>
+
+    <!-- Navbar -->
+
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand mx-auto" href="#">Travel App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Discover</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDestinations" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Destinations
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownDestinations">
+                        <a class="dropdown-item" href="#">Trips</a>
+                        <a class="dropdown-item" href="#">Travel</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">Destinations</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Trips</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sign-in.html">Sign-in</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+
+
+
+    <!-- Popular Destinations Carousel -->
+    <div class="container mt-5" id="place-to-visit1" id="first">
+        <h2 class="text-center mb-4">2024 Popular Destinations</h2>
+        <div id="destinationCarousel1" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="park.jpg" class="d-block w-100" alt="Destination 1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Cherry Blossoms , Japan</h5>
+                        <p>"In Japan, cherry blossoms, or 'sakura,' hold profound cultural significance, marking the
+                            arrival of spring and
+                            symbolizing the transient nature of life. Every year, usually in late March to early April,
+                            the country transforms into
+                            a sea of delicate pink and white petals as the cherry trees burst into bloom. This
+                            spectacle, known as 'hanami,' draws
+                            locals and tourists alike to parks, gardens, and riversides for picnics and contemplation
+                            under the ephemeral beauty of
+                            the blossoms. The tradition of hanami dates back centuries, reflecting the Japanese
+                            appreciation for nature's fleeting
+                            moments of beauty"</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="caption.jpg" class="d-block w-100" alt="Destination 2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Palawan Island, Philippines.</h5>
+                        <p>Palawan Island, situated in the western Philippines, is a breathtaking mosaic of natural
+                            wonders. With its crystalline
+                            turquoise waters, pristine white sandy beaches, and towering limestone cliffs, Palawan
+                            captivates visitors with its
+                            unparalleled beauty. Home to the renowned Puerto Princesa Subterranean River National Park,
+                            a UNESCO World Heritage
+                            Site, Palawan boasts an underground river system that winds through majestic caverns adorned
+                            with intricate rock</p>
+
+                    </div>
+                </div>
+                <!-- Add more carousel items here -->
+            </div>
+            <a class="carousel-control-prev" href="#destinationCarousel1" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#destinationCarousel1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Popular Destinations Carousel 1-->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Most Visited Destinations</h2>
+        <div id="destinationCarousel3" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Dynamically generated carousel items -->
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="images/All-Inclusive-Hotels.jpg" class="card-img-top" alt="Destination 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">All-Inclusive-Hotels</h5>
+                                    <!-- <button class="btn btn-primary">Book Now - $100</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="images/Family-Friendly Hetels.jpg" class="card-img-top" alt="Destination 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Family-Friendly Hotels</h5>
+                                    <!-- <button class="btn btn-primary">Book Now - $200</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="images/Luxury Hotels.jpg" class="card-img-top" alt="Destination 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Kyoto, Japan</h5>
+                                    <!-- <button class="btn btn-primary">Book Now - $250</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more carousel items here -->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="images/Pet-Friendly hotels.jpg" class="card-img-top" alt="Destination 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pet-Friendly hotels</h5>
+                                    <!-- <button class="btn btn-primary">Book Now - $100</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="images/Top Hotels.jpg" class="card-img-top" alt="Destination 5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Top Hotels</h5>
+                                    <!-- <button class="btn btn-primary">Book Now - $150</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="park.jpg" class="card-img-top" alt="Destination 6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tokyo, City of Blossom!</h5>
+                                    <!-- <button class="btn btn-primary">Book Now - $150</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#destinationCarousel3" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#destinationCarousel3" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Popular Destinations Carousel 2 -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Popular Destinations</h2>
+        <div id="destinationCarousel2" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Dynamically generated carousel items -->
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="park.jpg" class="card-img-top" alt="Destination 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Phuket, Thailand</h5>
+                                    <button class="btn btn-primary">Book Now - $100</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="Ho Chi Minh City, Vietnam.jpg" class="card-img-top" alt="Destination 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ho Chi Minh City, Vietnam</h5>
+                                    <button class="btn btn-primary">Book Now - $200</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="kyoto-japan.jpg" class="card-img-top" alt="Destination 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Kyoto, Japan</h5>
+                                    <button class="btn btn-primary">Book Now - $250</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more carousel items here -->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="new-delhi.jpg" class="card-img-top" alt="Destination 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">New Delhi, India</h5>
+                                    <button class="btn btn-primary">Book Now - $100</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="singapore.jpg" class="card-img-top" alt="Destination 5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Singapore, City of Dreams!</h5>
+                                    <button class="btn btn-primary">Book Now - $150</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card destination-card">
+                                <img src="park.jpg" class="card-img-top" alt="Destination 6">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tokyo, City of Blossom!</h5>
+                                    <button class="btn btn-primary">Book Now - $150</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#destinationCarousel2" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#destinationCarousel2" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <!-- contacts us start -->
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-8">
+                <h1 class="text-center mb-4">Find Us Here</h1>
+                <!-- Map container with iframe -->
+                <div id="map-container" class="mb-4">
+                    <iframe id="google-map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2539620411873!2d-74.00594118459162!3d40.71277604174731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25903ce155677%3A0xb3c9d86e23df6b20!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1620074942596!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <!-- Contact information -->
+                <div class="text-center contact-info">
+                    <p><strong>Address:</strong> 123 Street Name, City, Country</p>
+                    <p><strong>Email:</strong> example@example.com</p>
+                    <p><strong>Phone:</strong> +1234567890</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4>About Travel App</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Resources and Policies</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Trust and Safety</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Accessibility Statement</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Explore</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Help Centre</a></li>
+                        <li><a href="#">Travel Activities</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Do Business with Us</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Owners</a></li>
+                        <li><a href="#">Business Advantage</a></li>
+                        <li><a href="#">Sponsored Placements</a></li>
+                        <li><a href="#">Access Our Content API</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4>Follow Us</h4>
+                    <ul class="list-inline social-links">
+                        <li class="list-inline-item">
+                            <a href="#" class="social-link" data-toggle="tooltip" title="Visit our Facebook page">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="social-link" data-toggle="tooltip" title="Follow us on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="social-link" data-toggle="tooltip" title="Explore our Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy and Cookies Statement</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-right">
+                    <ul class="list-unstyled">
+                        <li><a href="#">How the Site Works</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap CSS & JS Links (Assuming Bootstrap 4) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- contact us end -->
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <!-- Script for closing the alert -->
+    <script>
+        $(".alert").alert();
+    </script>
+
+</body>
+
+</html>

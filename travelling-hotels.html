@@ -1,0 +1,152 @@
+<!-- HTML Structure -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Traveling Website</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Booking Form -->
+    <div class="container">
+        <h2 class="text-center">Book Your Stay</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="checkInDate">Check-in Date:</label>
+                <input type="date" class="form-control" id="checkInDate" required>
+            </div>
+            <div class="form-group">
+                <label for="checkOutDate">Check-out Date:</label>
+                <input type="date" class="form-control" id="checkOutDate" required>
+            </div>
+            <div class="form-group">
+                <label for="roomType">Room Type:</label>
+                <select class="form-control" id="roomType">
+                    <option value="single">Single Room</option>
+                    <option value="double">Double Room</option>
+                    <option value="suite">Suite</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="guests">Number of Guests:</label>
+                <input type="number" class="form-control" id="guests" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </form>
+    </div>
+
+    <!-- Search Functionality -->
+    <div class="container">
+        <h2 class="text-center">Search for Your Stay</h2>
+        <form>
+            <div class="form-group">
+                <label for="search">Search:</label>
+                <input type="search" class="form-control" id="search" placeholder="Search for hotels">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+
+    <!-- Room Details -->
+    <div class="container">
+        <h2 class="text-center">Room Details</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://via.placeholder.com/300x200" alt="Room Image">
+            </div>
+            <div class="col-md-8">
+                <h3>Single Room</h3>
+                <p>Single room with a comfortable bed and a private bathroom.</p>
+                <p>Price: $100 per night</p>
+                <button class="btn btn-primary">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation -->
+    <div class="container">
+        <h2 class="text-center">Booking Confirmation</h2>
+        <p id="bookingConfirmation"></p>
+    </div>
+
+    <!-- JavaScript for Form Validation -->
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Perform validations here
+            let checkInDate = document.getElementById('checkInDate').value;
+            let checkOutDate = document.getElementById('checkOutDate').value;
+            let roomType = document.getElementById('roomType').value;
+            let guests = document.getElementById('guests').value;
+            // Add more validations as needed
+            // If validations pass, proceed with booking
+            // Send a POST request to the server to book the room
+            fetch('/book-room', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    checkInDate,
+                    checkOutDate,
+                    roomType,
+                    guests
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('bookingConfirmation').innerHTML = 'Your booking has been confirmed.';
+                    } else {
+                        document.getElementById('bookingConfirmation').innerHTML = 'Failed to book room. Please try again.';
+                    }
+                });
+        });
+    </script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

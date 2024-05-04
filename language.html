@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <label for="languageSelect">Select Language:</label>
+        <select id="languageSelect" class="form-control" onchange="changeLanguage()">
+
+        </select>
+    </div>
+
+
+    <script>
+
+
+        // Function to populate language options dynamically
+        function populateLanguageOptions() {
+            const languageSelect = document.getElementById('languageSelect');
+
+            // Array of specified languages
+            const languages = [{
+                code: 'te', name: 'Telugu'
+            }
+
+                ,
+            {
+                code: 'hi', name: 'Hindi'
+            }
+
+                ,
+            {
+                code: 'ta', name: 'Tamil'
+            }
+
+                ,
+            {
+                code: 'kn', name: 'Kannada'
+            }
+
+                ,
+            {
+                code: 'bn', name: 'Bengali'
+            }
+
+                ,
+            {
+                code: 'ur', name: 'Urdu'
+            }
+
+                ,
+            {
+                code: 'ja', name: 'Japanese'
+            }
+
+                ,
+            {
+                code: 'fr', name: 'French'
+            }
+
+                ,
+            {
+                code: 'es', name: 'Spanish'
+            }
+
+                ,
+            {
+                code: 'de', name: 'German'
+            }
+
+                ,
+            {
+                code: 'pt-BR', name: 'Brazilian Portuguese'
+            }
+
+                ,
+            {
+                code: 'vi', name: 'Vietnamese'
+            }
+
+                ,
+            {
+                code: 'en', name: 'English'
+            }
+
+            ];
+
+            // Populate language options
+            languages.forEach(language => {
+                const option = document.createElement('option');
+                option.value = language.code;
+                option.textContent = language.name;
+                languageSelect.appendChild(option);
+            });
+        }
+
+        // Function to change language
+        function changeLanguage() {
+            const selectedLanguage = document.getElementById('languageSelect').value;
+
+            // Placeholder function for handling language-specific translations
+            // For demonstration purposes, we're updating the page title and description
+            switch (selectedLanguage) {
+                case 'te':
+                    document.getElementById('pageTitle').textContent = 'మన ప్రయాణం యాప్ కి స్వాగతం';
+                    document.getElementById('pageDescription').textContent = 'మనం పర్యటనలో మన జాగ్రత్తతో పాటు ప్రతిభటించండి!';
+                    break;
+                case 'hi':
+                    document.getElementById('pageTitle').textContent = 'हमारे यात्रा एप्लिकेशन में आपका स्वागत है';
+                    document.getElementById('pageDescription').textContent = 'हमारे साथ दुनिया की खोज करें!';
+                    break;
+                case 'ta':
+                    document.getElementById('pageTitle').textContent = 'எங்கள் பயணப் பயன்பாட்டில் நீங்கள் வரவேற்கின்றீர்கள்';
+                    document.getElementById('pageDescription').textContent = 'எங்களுடைய உலகத் தேடலை விரும்புகின்றீர்கள்!';
+                    break;
+                case 'kn':
+                    document.getElementById('pageTitle').textContent = 'ನಮ್ಮ ಪ್ರಯಾಣ ಅಪ್ಲಿಕೇಶನ್‌ಗೆ ಸ್ವಾಗತ';
+                    document.getElementById('pageDescription').textContent = 'ನಮ್ಮ ಜಗತ್ತನ್ನು ಅನ್ವೇಷಿಸಿ!';
+                    break;
+                case 'bn':
+                    document.getElementById('pageTitle').textContent = 'আমাদের ভ্রমণ অ্যাপ্লিকেশনে স্বাগতম';
+                    document.getElementById('pageDescription').textContent = 'আমাদের সাথে বিশ্ব অন্বেষণ করুন!';
+                    break;
+                case 'ur':
+                    document.getElementById('pageTitle').textContent = 'ہمارے سفر کے اپلیکیشن میں خوش آمدید';
+                    document.getElementById('pageDescription').textContent = 'ہم ساتھ دنیا کی تلاش کریں!';
+                    break;
+                case 'ja':
+                    document.getElementById('pageTitle').textContent = '私たちの旅行アプリケーションへようこそ';
+                    document.getElementById('pageDescription').textContent = '私たちと世界を探検しましょう！';
+                    break;
+                case 'fr':
+                    document.getElementById('pageTitle').textContent = 'Bienvenue dans notre application de voyage';
+                    document.getElementById('pageDescription').textContent = 'Explorez le monde avec nous !';
+                    break;
+                case 'es':
+                    document.getElementById('pageTitle').textContent = 'Bienvenido a nuestra aplicación de viajes';
+                    document.getElementById('pageDescription').textContent = '¡Explora el mundo con nosotros!';
+                    break;
+                case 'de':
+                    document.getElementById('pageTitle').textContent = 'Willkommen in unserer Reiseanwendung';
+                    document.getElementById('pageDescription').textContent = 'Erkunden Sie die Welt mit uns!';
+                    break;
+                case 'pt-BR':
+                    document.getElementById('pageTitle').textContent = 'Bem-vindo ao nosso aplicativo de viagens';
+                    document.getElementById('pageDescription').textContent = 'Explore o mundo conosco!';
+                    break;
+                case 'vi':
+                    document.getElementById('pageTitle').textContent = 'Chào mừng bạn đến với ứng dụng du lịch của chúng tôi';
+                    document.getElementById('pageDescription').textContent = 'Khám phá thế giới cùng chúng tôi!';
+                    break;
+                case 'en':
+                    document.getElementById('pageTitle').textContent = 'Welcome to Our Travel Application';
+                    document.getElementById('pageDescription').textContent = 'Explore the world with us!';
+                    break;
+                default:
+                    document.getElementById('pageTitle').textContent = 'Welcome to Our Travel Application';
+                    document.getElementById('pageDescription').textContent = 'Explore the world with us!';
+            }
+        }
+
+        // Call populateLanguageOptions function when the page loads
+        window.onload = populateLanguageOptions;
+
+
+    </script>
+    <script src="script.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

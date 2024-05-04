@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand mx-auto" href="index.html">
+            <img src="images/nav-logo1.png" alt="" width="40" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDestinations" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Discover
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownDestinations">
+                        <a class="dropdown-item" href="index-trips.html" target="_blank">Trips</a>
+                        <a class="dropdown-item" href="index-travel-activities.html" target="_blank">Travel
+                            Activites</a>
+                    </div>
+                </li>
+
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index-destination.html" target="_blank">Destinations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index-trips.html" target="_blank">Trips</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sign-in.html" target="_blank">Sign-in</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+
+
+
+
+
+
+
+
+    <div class="container  py-5 my-5">
+        <h2 class="mb-4">Travel Form</h2>
+        <form id="travelForm">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <select class="form-control" id="destination" required>
+                    <option value="">Select destination</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Travel Date</label>
+                <input type="date" class="form-control" id="date" min="<?php echo date('Y-m-d'); ?>" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="mt-5">
+
+
+
+        <footer class="footer bg-dark text-white mt-5">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4>About Travel App</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Resources and Policies</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Trust and Safety</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Accessibility Statement</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Explore</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Help Centre</a></li>
+                            <li><a href="#">Travel Activities</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Do Business with Us</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Owners</a></li>
+                            <li><a href="#">Business Advantage</a></li>
+                            <li><a href="#">Sponsored Placements</a></li>
+                            <li><a href="#">Access Our Content API</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Follow Us</h4>
+                        <ul class="list-inline social-links">
+                            <li class="list-inline-item">
+                                <a href="#" class="social-link" data-toggle="tooltip" title="Visit our Facebook page">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="social-link" data-toggle="tooltip" title="Follow us on Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="social-link" data-toggle="tooltip" title="Explore our Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Privacy and Cookies Statement</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <ul class="list-unstyled">
+                            <li><a href="#">How the Site Works</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+    </div>
+    </footer>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript for form validation -->
+    <script>
+        // Function to populate countries in the dropdown
+        function populateCountries() {
+            var selectElement = document.getElementById('destination');
+            fetch('https://restcountries.com/v3.1/all')
+                .then(response => response.json())
+                .then(data => {
+                    // Extract country names from the data and sort them alphabetically
+                    var countries = data.map(country => country.name.common).sort();
+                    // Add countries to the dropdown
+                    countries.forEach(country => {
+                        var option = document.createElement('option');
+                        option.text = country;
+                        option.value = country;
+                        selectElement.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching countries:', error));
+        }
+
+        // Call populateCountries function to populate the dropdown
+        populateCountries();
+
+        // Function to validate the form
+        function validateForm() {
+            var fullName = document.getElementById('fullName').value;
+            var email = document.getElementById('email').value;
+            var destination = document.getElementById('destination').value;
+            var date = document.getElementById('date').value;
+
+            if (!fullName || !email || !destination || !date) {
+                alert('All fields are required');
+                return false;
+            }
+
+            // Validate date (from present date to future date)
+            var currentDate = new Date();
+            var selectedDate = new Date(date);
+            if (selectedDate <= currentDate) {
+                alert('Please select a date from the present date to the future date.');
+                return false;
+            }
+
+            // You can add additional validation logic here
+
+            return true;
+        }
+
+        // Submit handler for the form
+        document.getElementById('travelForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            if (validateForm()) {
+                // If form is valid, you can perform additional actions here like AJAX request to submit data
+                alert('Form submitted successfully');
+                // Reset form after submission
+                this.reset();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

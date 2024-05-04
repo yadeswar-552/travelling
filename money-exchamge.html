@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Exchange</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Money Exchange</h1>
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" class="form-control" placeholder="Enter amount">
+        </div>
+        <div class="form-group">
+            <label for="fromCountry">From Country:</label>
+            <select id="fromCountry" class="form-control">
+                <!-- Options will be dynamically added by JavaScript -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="toCountry">To Country:</label>
+            <select id="toCountry" class="form-control">
+                <!-- Options will be dynamically added by JavaScript -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="result">Result:</label>
+            <input type="text" id="result" class="form-control" readonly>
+        </div>
+        <button class="btn btn-primary" onclick="calculate()">Calculate</button>
+    </div>
+
+    <script>
+        async function calculate() {
+            // Get user input
+            var amount = parseFloat(document.getElementById('amount').value);
+            var fromCountry = document.getElementById('fromCountry').value;
+            var toCountry = document.getElementById('toCountry').value;
+
+            // Fetch exchange rates from an API
+            try {
+                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCountry}`);
+                const data = await response.json();
+
+                // Get the exchange rate for the selected countries
+                const exchangeRate = data.rates[toCountry];
+
+                // Calculate result
+                const result = amount * exchangeRate;
+
+                // Display result
+                document.getElementById('result').value = result.toFixed(2);
+            } catch (error) {
+                console.error('Error fetching exchange rates:', error);
+                alert('Failed to fetch exchange rates. Please try again later.');
+            }
+        }
+
+        // Populate country dropdowns dynamically
+        async function populateCountryDropdowns() {
+            try {
+                const response = await fetch('https://restcountries.com/v3.1/all');
+                const countries = await response.json();
+
+                // Sort countries alphabetically by name
+                countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
+
+                // Populate dropdowns
+                const fromCountryDropdown = document.getElementById('fromCountry');
+                const toCountryDropdown = document.getElementById('toCountry');
+
+                countries.forEach(country => {
+                    const optionFrom = document.createElement('option');
+                    const optionTo = document.createElement('option');
+                    optionFrom.value = country.cca2;
+                    optionFrom.textContent = country.name.common;
+                    optionTo.value = country.cca2;
+                    optionTo.textContent = country.name.common;
+                    fromCountryDropdown.appendChild(optionFrom);
+                    toCountryDropdown.appendChild(optionTo);
+                });
+            } catch (error) {
+                console.error('Error fetching country list:', error);
+                alert('Failed to fetch country list. Please try again later.');
+            }
+        }
+
+        // Call populateCountryDropdowns function when the page loads
+        window.onload = populateCountryDropdowns;
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
